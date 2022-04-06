@@ -1,8 +1,9 @@
+import axios from '../api/axios-strapi'
 import Head from 'next/head'
 import Slider from '../components/Slider/Slider'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({slides}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -12,8 +13,15 @@ export default function Home() {
       </Head>
 
       <main className={styles.slider}>
-        <Slider/>
+        <Slider slides={slides}/>
       </main>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const slidres = await axios.get('/sliders?populate=image');
+  const slides = slidres.data.data
+
+  return {props: {slides}}
 }

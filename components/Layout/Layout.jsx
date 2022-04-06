@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { nav } from "../../data/nav";
 import cn from "classnames";
-import "./news.png";
 
 function Layout({ children }) {
   const router = useRouter({});
@@ -15,7 +14,7 @@ function Layout({ children }) {
             <div className="logo">
 							<Link href='/'>
 								<a>
-									<img className="logo-img" src='./news.png' alt="" />
+									<img className="logo-img" src='/img/news.png' alt="" />
 								</a>
 							</Link>
             </div>
@@ -44,12 +43,11 @@ function Layout({ children }) {
       <style jsx>
         {`
           .header {
-            padding: 20px 0;
+            padding: 15px 0;
             background-color: #778ca3;
 						position: sticky;
 						top: 0;
 						z-index: 1000;
-            margin-bottom: 100px;
           }
           .container {
             max-width: 1200px;
