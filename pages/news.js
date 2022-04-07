@@ -13,7 +13,7 @@ export default function NewsPage({card}) {
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
 				<div className="title__block">
-					<h1 className="news__title">Список всех новостей</h1>
+					<h1 className={styles.title}>Список всех новостей</h1>
 				</div>
 				<News news={card}/>
 			</div>

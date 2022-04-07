@@ -4,10 +4,14 @@
 }
 .title{
 	font-size: 34px;
+	font-weight: normal;
 	color: #778ca3;
 }
 .contact__title{
 	font-size: 24px;
+	font-weight: 300;
+	margin: 0;
+	margin-bottom: 20px;
 }
 .contact__info{
 	display: flex;

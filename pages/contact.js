@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../styles/Contact.module.css'
-import {FiTwitter, FiFacebook, FiInstagram} from 'react-icons/fi'
+import {FiTwitter, FiFacebook, FiInstagram, FiLinkedin} from 'react-icons/fi'
 import Head from 'next/head'
 
 export default function ContactPage() {
@@ -41,7 +41,7 @@ export default function ContactPage() {
 					</div>
 					<div className={styles.contact__info_item}>
 						<div>
-							<h2 className={styles.contact__title}>Соц.сети:</h2>
+							<h2 className={styles.contact__title}>Социальные сети:</h2>
 						</div>
 						<div className={styles.social__items}>
 							<div className={styles.social__item}>
@@ -57,6 +57,11 @@ export default function ContactPage() {
 							<div className={styles.social__item}>
 								<a href='#' className='social__info information'>
 									<FiFacebook className={styles.social__icon}/>
+								</a>
+							</div>
+							<div className={styles.social__item}>
+								<a href='#' className='social__info information'>
+									<FiLinkedin className={styles.social__icon}/>
 								</a>
 							</div>
 						</div>

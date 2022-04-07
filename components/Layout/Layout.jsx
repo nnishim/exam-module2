@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { nav } from "../../data/nav";
 import cn from "classnames";
+import {FiLogIn} from 'react-icons/fi'
+import styles from './Layout.module.css'
 
 function Layout({ children }) {
   const router = useRouter({});
@@ -34,7 +36,9 @@ function Layout({ children }) {
               })}
             </nav>
             <div className="auth">
-              <button className="auth__btn">Войти</button>
+              <Link href='#'>
+                <a className="auth__btn"> <span>Войти</span> <FiLogIn className={styles.auth_icon}/></a>
+              </Link>
             </div>
           </div>
         </div>
@@ -101,7 +105,10 @@ function Layout({ children }) {
             border-bottom: 2px solid #fff;
           }
           .auth__btn {
-            padding: 15px 45px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 0 5px;
             cursor: pointer;
             color: #fff;
             border-radius: 5px;
