@@ -1,11 +1,15 @@
 import React from 'react'
 import styles from '../styles/Contact.module.css'
 import {FiTwitter, FiFacebook, FiInstagram} from 'react-icons/fi'
-import {BsInstagram} from 'react-icons/bs'
+import Head from 'next/head'
 
 export default function ContactPage() {
 	return (
 		<div className="contact">
+			<Head>
+        <title>Контакты</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 			<div className={styles.container}>
 				<div className="title__block">
 					<h1 className={styles.title}>Контакты</h1>
@@ -24,7 +28,7 @@ export default function ContactPage() {
 							<h2 className={styles.contact__title}>Телефон:</h2>
 						</div>
 						<div>
-							<span className='phone__info information'>+996 - 888 - 888 - 888</span>
+							<span className={styles.information}>+996 - 888 - 888 - 888</span>
 						</div>
 					</div>
 					<div className={styles.contact__info_item}>
@@ -32,7 +36,7 @@ export default function ContactPage() {
 							<h2 className={styles.contact__title}>Адрес:</h2>
 						</div>
 						<div>
-							<span className='street__info information'>г. Бишкек, пр-т Чуй, 225</span>
+							<span className={styles.information}>г. Бишкек, пр-т Чуй, 225</span>
 						</div>
 					</div>
 					<div className={styles.contact__info_item}>

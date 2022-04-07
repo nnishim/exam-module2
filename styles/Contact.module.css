@@ -31,16 +31,20 @@
 .social__icon{
 	width: 25px;
 	height: 25px;
+	color: #778ca3;
 	transition: .3s ease-in-out;
 }
 .social__icon:hover{
-	color: #778ca3;
+	color: rgb(0, 176, 176);
 }
 .email__link{
-	color: rgb(0, 176, 176);
+	color: #778ca3;
 	transition: .3s ease-in-out;
 }
 .email__link:hover{
-	color: #778ca3;
+	color: rgb(0, 176, 176);
 	text-decoration: underline;
+}
+.information{
+	color: #778ca3;
 }

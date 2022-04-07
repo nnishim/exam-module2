@@ -7,7 +7,7 @@ export default function Home({slides}) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>News Blog</title>
+        <title>Главная</title>
         <meta name="description" content="news" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

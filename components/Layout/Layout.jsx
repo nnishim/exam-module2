@@ -43,7 +43,7 @@ function Layout({ children }) {
       <style jsx>
         {`
           .header {
-            padding: 15px 0;
+            padding: 10px 0;
             background-color: #778ca3;
 						position: sticky;
 						top: 0;
@@ -54,8 +54,8 @@ function Layout({ children }) {
             margin: 0 auto;
           }
 					.logo-img{
-						width: 30px;
-						height: 30px;
+						width: 35px;
+						height: 35px;
 					}
           .navbar {
             display: flex;
