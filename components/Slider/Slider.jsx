@@ -4,14 +4,12 @@ import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/bundle";
 import "swiper/css/autoplay";
 import { SERVER_URL } from "../../api/urls";
 
 function Slider({ slides }) {
-  SwiperCore.use([Autoplay])
+  // SwiperCore.use([Autoplay])
   return (
     <Swiper
       loop={true}
@@ -21,7 +19,7 @@ function Slider({ slides }) {
       pagination={{clickable: true }}
       mousewheel={true}
       keyboard={true}
-      modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
+      modules={[Navigation, Pagination, Mousewheel, Keyboard]}
       className="mySwiper"
     >
       {slides.map((slide) => {
@@ -39,7 +37,7 @@ function Slider({ slides }) {
       })}
       <style jsx>
         {`
-          .swiper-button-next, .swiper-button-prev{
+          {/* .swiper-button-next, .swiper-button-prev{
             color: #fff !important;
           } 
           .swiper-button-prev{
@@ -47,7 +45,8 @@ function Slider({ slides }) {
           }
           .swiper-button-next{
             right: 25px;
-          }
+          } */}
+          
           .slide-item {
             width: 100%;
             height: 550px;

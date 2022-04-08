@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 import axios from '../api/axios-strapi'
+import Footer from '../components/Footer/Footer';
 import News from '../components/News/News';
 import styles from '../styles/Contact.module.css'
 
@@ -17,12 +18,13 @@ export default function NewsPage({card}) {
 				</div>
 				<News news={card}/>
 			</div>
+			<Footer/>
 		</div>
 	)
 }
 
 export async function getStaticProps() {
-  const cards = await axios.get('/cards');
+  const cards = await axios.get('/cards?pagination[pageSize]=3&pagination[page]=1&populate=cardImg');
   const card = cards.data.data
 
   return {props: {card}}

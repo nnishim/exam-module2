@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../styles/Contact.module.css'
 import {FiTwitter, FiFacebook, FiInstagram, FiLinkedin} from 'react-icons/fi'
 import Head from 'next/head'
+import Footer from '../components/Footer/Footer'
 
 export default function ContactPage() {
 	return (
@@ -69,6 +70,7 @@ export default function ContactPage() {
 				</div>
 			</div>
 			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.80849678554!2d74.59139991501571!3d42.876886010299096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7df8c6064d9%3A0x5e0f4e166983dc74!2z0J_RgNC-0YTQtdGB0YHQuNC-0L3QsNC70YzQvdGL0Lkg0LvQuNGG0LXQuSDihJY5OA!5e0!3m2!1sru!2skg!4v1649235466296!5m2!1sru!2skg" width="100%" height="450" style={{border: 0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			<Footer/>
 		</div>
 	)
 }

@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { nav } from "../../data/nav";
 import cn from "classnames";
-import {FiLogIn} from 'react-icons/fi'
-import styles from './Layout.module.css'
+import { FiLogIn } from "react-icons/fi";
+import styles from "./Layout.module.css";
 
 function Layout({ children }) {
   const router = useRouter({});
@@ -14,11 +14,11 @@ function Layout({ children }) {
         <div className="container">
           <div className="navbar">
             <div className="logo">
-							<Link href='/'>
-								<a>
-									<img className="logo-img" src='/img/news.png' alt="" />
-								</a>
-							</Link>
+              <Link href="/">
+                <a>
+                  <img className="logo-img" src="/img/news.png" alt="" />
+                </a>
+              </Link>
             </div>
             <nav className="nav">
               {nav.map((link) => {
@@ -36,8 +36,11 @@ function Layout({ children }) {
               })}
             </nav>
             <div className="auth">
-              <Link href='#'>
-                <a className="auth__btn"> <span>Войти</span> <FiLogIn className={styles.auth_icon}/></a>
+              <Link href="#">
+                <a className="auth__btn">
+                  <span>Войти</span> 
+                  <FiLogIn className={styles.auth_icon} />
+                </a>
               </Link>
             </div>
           </div>
@@ -49,26 +52,26 @@ function Layout({ children }) {
           .header {
             padding: 10px 0;
             background-color: #778ca3;
-						position: sticky;
-						top: 0;
-						z-index: 1000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
           }
           .container {
             max-width: 1200px;
             margin: 0 auto;
           }
-					.logo-img{
-						width: 35px;
-						height: 35px;
-					}
+          .logo-img {
+            width: 35px;
+            height: 35px;
+          }
           .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
           }
-					.nav{
-						margin-right: -60px;
-					}
+          .nav {
+            margin-right: -60px;
+          }
           .nav__link {
             color: #d1d8e0;
             transition: 0.2s ease-in-out;
