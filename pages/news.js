@@ -5,7 +5,7 @@ import Footer from '../components/Footer/Footer';
 import News from '../components/News/News';
 import styles from '../styles/Contact.module.css'
 
-export default function NewsPage({card}) {
+export default function NewsPage({newsItem}) {
 	return (
 		<div className="news">
 			<div className={styles.container}>
@@ -16,7 +16,7 @@ export default function NewsPage({card}) {
 				<div className="title__block">
 					<h1 className={styles.title}>Список всех новостей</h1>
 				</div>
-				<News news={card}/>
+				<News news={newsItem}/>
 			</div>
 			<Footer/>
 		</div>
@@ -24,8 +24,8 @@ export default function NewsPage({card}) {
 }
 
 export async function getStaticProps() {
-  const cards = await axios.get('/cards?pagination[pageSize]=3&pagination[page]=1&populate=cardImg');
-  const card = cards.data.data
+  const news = await axios.get('/cards?pagination[pageSize]=3&pagination[page]=1&populate=cardImg');
+  const newsItem = news.data.data
 
-  return {props: {card}}
+  return {props: {newsItem}}
 }

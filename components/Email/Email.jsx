@@ -23,7 +23,7 @@ function Email() {
         {`
           .email-subscribe {
             background-color: #ccc;
-            padding: 70px 0;
+            padding: 100px 0;
 						margin-bottom: 50px;
           }
           .container {

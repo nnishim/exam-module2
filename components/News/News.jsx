@@ -44,7 +44,7 @@ function News({news}) {
 												<BiCalendar/>
 												<span>{newsItem.date}</span>
 											</div>
-											<Link href='#'>
+											<Link href='/post'>
 												<a className='news-list__btn'>Подробнее</a>
 											</Link>
 										</div>
@@ -57,12 +57,8 @@ function News({news}) {
       </Swiper>
 			<style jsx>
 				{`
-					*{
-						margin: 0;
-						padding: 0;
-					}
-					
 					.news-list{
+						font-family: Calibri;
 						list-style: none;
 						display: flex;
 						align-items: flex-start;
@@ -71,7 +67,7 @@ function News({news}) {
 					}
 					.news-list__item{
 						display: flex;
-						margin-bottom: 15px;
+						margin-bottom: 25px;
 						border: 1px solid #778ca3;
 						border-radius: 5px;
 						overflow: hidden;
@@ -80,7 +76,7 @@ function News({news}) {
 					.news-item__title{
 						margin-bottom: 15px;
 						font-size: 24px;
-						font-weight: 300;
+						font-weight: normal;
 					}
 					.author{
 						font-size: 18px;
@@ -93,6 +89,7 @@ function News({news}) {
 					}
 					.news-item__date{
 						display: flex;
+						align-items: center;
 						gap: 5px;
 					}
 					.news-list__info{

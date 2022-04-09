@@ -26,7 +26,7 @@ function Layout({ children }) {
                   <Link key={link.id} href={link.href}>
                     <a
                       className={cn("nav__link", {
-                        active: router.asPath === link.href,
+                        active: router.asPath === link.href
                       })}
                     >
                       {link.name}
@@ -38,7 +38,7 @@ function Layout({ children }) {
             <div className="auth">
               <Link href="#">
                 <a className="auth__btn">
-                  <span>Войти</span> 
+                  <span>Войти</span>
                   <FiLogIn className={styles.auth_icon} />
                 </a>
               </Link>
@@ -74,34 +74,27 @@ function Layout({ children }) {
           }
           .nav__link {
             color: #d1d8e0;
-            transition: 0.2s ease-in-out;
-            margin: 0 15px;
+            padding-bottom: 5px;
+            margin: 0 10px;
             position: relative;
+            transition: 0.3s ease-in-out;
           }
-          .nav__link:after {
+          .nav__link::after {
+            height: 1px;
+            width: 100%;
+            background: white;
             content: "";
-            display: block;
             position: absolute;
-            right: 0;
-            bottom: -3px;
-            width: 0;
-            height: 2px;
-            background-color: #fff;
-            transition: width 0.5s;
+            left: 0px;
+            bottom: 0;
+            transform: scale(0);
+            transition: .3s ease-in-out;
           }
-          .nav__link:hover {
+          .nav__link:hover{
             color: #fff;
           }
-          .nav__link:hover:after {
-            content: "";
-            width: 100%;
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            height: 2px;
-            background-color: #fff;
-            transition: width 0.5s;
+          .nav__link:hover::after{
+            transform: scale(1);
           }
           .active {
             color: #fff;

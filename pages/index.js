@@ -4,8 +4,9 @@ import Slider from '../components/Slider/Slider'
 import styles from '../styles/Home.module.css'
 import Email from '../components/Email/Email'
 import Footer from '../components/Footer/Footer'
+import Cards from '../components/Cards/Cards'
 
-export default function Home({slides}) {
+export default function Home({slides, card}) {
   return (
     <div>
       <Head>
@@ -17,15 +18,28 @@ export default function Home({slides}) {
       <main className={styles.slider}>
         <Slider slides={slides}/>
       </main>
+      <Cards cards={card}/>
       <Email/>
       <Footer/>
     </div>
   )
 }
 
-export async function getStaticProps() {
+export async function loadSlides() {
   const slidres = await axios.get('/sliders?populate=image');
-  const slides = slidres.data.data
+  const slidesData = slidres.data.data
+  
+  return slidesData
+}
+export async function loadCards() {
+  const cards = await axios.get('/cards?pagination[pageSize]=3&pagination[page]=1&populate=cardImg')
+  const cardData = cards.data.data;
+  
+  return cardData
+}
 
-  return {props: {slides}}
+export async function getStaticProps() {
+  const slides = await loadSlides()
+  const card = await loadCards()
+  return {props: {slides, card}}
 }
