@@ -1,11 +1,13 @@
 import React from 'react'
 import Post from '../components/Post/Post';
 import axios from '../api/axios-strapi'
+import Footer from '../components/Footer/Footer'
 
-export default function PostPage({post}) {
+export default function PostPage({post, news}) {
 	return (
 		<>
-			<Post posts={post}/>
+			<Post post={post} news={news}/>
+			<Footer/>
 		</>
 	)
 }
@@ -15,8 +17,14 @@ export async function loadPost() {
   
   return postData
 }
+export async function loadNews() {
+  const newsList = await axios.get('/cards?populate=cardImg');
+  const newsData = newsList.data.data
+	return newsData
+}
 
 export async function getStaticProps() {
   const post = await loadPost()
-  return {props: {post}}
+  const news = await loadNews()
+  return {props: {post, news}}
 }

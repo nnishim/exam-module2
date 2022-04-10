@@ -53,3 +53,17 @@
 .information{
 	color: #778ca3;
 }
+.author__img{
+	width: 60px;
+	height: 60px;
+	color: #fff;
+}
+.social__icon_author{
+	width: 25px;
+	height: 25px;
+	color: #fff;
+	transition: .3s ease-in-out;
+}
+.social__icon_author:hover{
+	color: rgb(0, 176, 176);
+}
