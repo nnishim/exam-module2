@@ -6,10 +6,7 @@ import { BiCalendar } from "react-icons/bi";
 import { SERVER_URL } from "../../api/urls";
 import Link from "next/link";
 
-function Post({ post, news }) {
-	const removeItem = (id) => {
-		news.filter(news => news.id !== id)
-	};
+function Post({ post }) {
 
   return (
     <>
@@ -67,7 +64,7 @@ function Post({ post, news }) {
                   <Link href="#">
                     <a className="edit-btn"><FaRegEdit/> Редактировать пост</a>
                   </Link>
-                  <button className="delete-btn" onClick={removeItem}><FaRegTrashAlt/> Удалить пост</button>
+                  <button className="delete-btn"><FaRegTrashAlt/> Удалить пост</button>
                 </div>
               </div>
             </div>

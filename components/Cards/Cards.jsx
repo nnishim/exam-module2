@@ -28,7 +28,7 @@ function Cards({ cards }) {
 											<BiCalendar />
 											<span>{card.date}</span>
 										</div>
-										<Link href="#">
+										<Link href={`/news/${card.id}`}>
 											<a className="card__btn">Подробнее</a>
 										</Link>
 									</div>

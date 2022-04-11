@@ -90,6 +90,7 @@ function Footer() {
 			<style jsx>
 				{`
 					.footer{
+						border-top: 1px solid #778ca3;
 						padding: 30px 0;
 					}
 					.footer__content{

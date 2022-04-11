@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import React from 'react'
-import axios from '../api/axios-strapi'
-import Footer from '../components/Footer/Footer';
-import News from '../components/News/News';
-import styles from '../styles/Contact.module.css'
+import axios from '../../api/axios-strapi'
+import Footer from '../../components/Footer/Footer';
+import News from '../../components/News/News';
+import styles from '../../styles/Contact.module.css'
 
 export default function NewsPage({newsItem}) {
 	return (
