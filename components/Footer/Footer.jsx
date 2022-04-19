@@ -106,7 +106,7 @@ function Footer() {
 					}
 					.footer-contact__title{
 						margin: 0;
-						font-size: 20px;
+						font-size: 18px;
 						font-weight: normal;
 					}
 					.container {
@@ -149,7 +149,7 @@ function Footer() {
           .nav__link:hover {
             color: rgb(0, 176, 176);
           }
-          .nav__link:hover:after {
+          .nav__link:hover:not(.active)::after {
             content: "";
             width: 100%;
             display: block;

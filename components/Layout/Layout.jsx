@@ -79,22 +79,27 @@ function Layout({ children }) {
             position: relative;
             transition: 0.3s ease-in-out;
           }
-          .nav__link::after {
-            height: 1px;
-            width: 100%;
-            background: white;
+          .nav__link:after {
             content: "";
+            display: block;
             position: absolute;
-            left: 0px;
-            bottom: 0;
-            transform: scale(0);
-            transition: .3s ease-in-out;
+            right: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: width 0.5s;
           }
-          .nav__link:hover{
+          .nav__link:hover:not(.active){
             color: #fff;
           }
-          .nav__link:hover::after{
-            transform: scale(1);
+          .nav__link:hover:not(.active)::after{
+            width: 100%;
+            display: block;
+            position: absolute;
+            left: 0;
+            background-color: #fff;
+            transition: width 0.5s;
           }
           .active {
             color: #fff;

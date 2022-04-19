@@ -6,8 +6,8 @@ import { BiCalendar } from "react-icons/bi";
 import { SERVER_URL } from "../../api/urls";
 import Link from "next/link";
 
-function Post({ post }) {
-
+function Post({ post, user }) {
+  console.log(user);
   return (
     <>
       <div className="post-wrapper">
@@ -28,18 +28,18 @@ function Post({ post }) {
               <div className="post__desc-block">
                 <p className="post__desc">{post.description}</p>
               </div>
-              <div className="author__item">
+              <div className="author__item" key={user.id}>
                 <div className="post__author">
                   <div className="author">
                     <div className="author__image">
-                      <FaUserCircle className={styles.author__img} />
+                      <img className='author__img' src={SERVER_URL + user.userImg?.formats?.large?.url} alt="" />
                     </div>
-                    <h2 className="author__name">{post.author}</h2>
+                    <h2 className="author__name">{user.name}</h2>
                     <div className="author__activity">
-                      <span>{post.activity}</span>
+                      <span>{user.activity}</span>
                     </div>
                     <div className="author__articles">
-                      <span>{post.articles}</span>
+
                     </div>
                   </div>
                   <div className={styles.social__items}>
@@ -61,7 +61,7 @@ function Post({ post }) {
                   </div>
                 </div>
                 <div className="post__buttons">
-                  <Link href="#">
+                  <Link  href={`/post_edit`}>
                     <a className="edit-btn"><FaRegEdit/> Редактировать пост</a>
                   </Link>
                   <button className="delete-btn"><FaRegTrashAlt/> Удалить пост</button>
@@ -74,7 +74,17 @@ function Post({ post }) {
       <style jsx>
         {`
           .author__image {
+            margin: 0 auto;
             margin-bottom: 20px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+          .author__img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
           .author__activity {
             margin-bottom: 15px;

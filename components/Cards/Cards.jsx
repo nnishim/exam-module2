@@ -21,7 +21,7 @@ function Cards({ cards }) {
 								<div className="card__info">
 									<div>
 										<h2 className="card__title">{card.title}</h2>
-										<p className="card__desc">{card.description}</p>
+										<p className="card__desc">{card.shortDesc}</p>
 									</div>
 									<div className="card__bottom">
 										<div className="card__date">

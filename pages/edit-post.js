@@ -1,86 +1,56 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import axios from "../api/axios-strapi";
+import React, { useState } from "react";
 import styles from "../styles/AddPost.module.css";
+import axios from "../api/axios-strapi";
+import Head from "next/head";
+import { SERVER_URL } from "../api/urls";
 
-export default function AddPostPage() {
-  const initialState = {
-    title: "",
-    shortDesc: "",
-    description: "",
-    cardImg: null,
-  };
-  const [post, setPost] = useState(initialState);
-  const [image, setImage] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+export default function PostEditPage({ editpost }) {
+  const [editPost, setEditPost] = useState({
+    title: editpost.title,
+    shortDesc: editpost.shortDesc,
+    description: editpost.description,
+    cardImg: editpost.cardImg,
+  });
 
   const changeHandler = (e) => {
-    setPost((post) => {
+    setEditPost(() => {
       return {
-        ...post,
+        ...editPost,
         [e.target.name]: e.target.value,
       };
     });
   };
-
-  // useEffect(() => {
-  //   setIsLoaded(true);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (isLoaded) {
-  //     true
-  //   }
-  // }, [isLoaded]);
-
-  const fileChange = async (e) => {
-    const formData = new FormData();
-
-    formData.append("files", e.target.files[0]);
-    const addFile = await axios.post(
-      `http://localhost:1337/api/upload`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-    setImage(addFile);
-  };
-
-  async function addPost() {
-    const newsInfo = {
-      title: post.title,
-      shortDesc: post.shortDesc,
-      description: post.description,
-      cardImg: image,
+  async function editedPost() {
+    const editInfo = {
+      title: editPost.title,
+      shortDesc: editPost.shortDesc,
+      description: editPost.description,
     };
-    const add = await axios.post(`/cards?populate=cardImg`, { data: newsInfo });
+    const add = await axios.post(`/cards`, { data: editInfo });
   }
-
   const submitHandler = (e) => {
     e.preventDefault();
-    addPost();
+    editedPost();
   };
   return (
     <>
       <div className={styles.add_post}>
         <Head>
-          <title>Добавить новость</title>
+          <title>Редактировать пост</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.container}>
-          <h1 className={styles.title}>Добавить новость</h1>
+          <h1 className={styles.title}>Редактировать новость</h1>
           <form className={styles.form} onSubmit={submitHandler}>
             <div className={styles.form__content}>
               <div>
                 <div className={styles.input__block}>
                   <div className={styles.input__text}>Заголовок новости</div>
                   <input
+                    onChange={changeHandler}
                     type="text"
                     name="title"
-                    onChange={changeHandler}
+                    value={editPost.title}
                     className={styles.input__item}
                     placeholder="Введите заголовок"
                   />
@@ -92,6 +62,7 @@ export default function AddPostPage() {
                   <textarea
                     name="shortDesc"
                     onChange={changeHandler}
+                    value={editPost.shortDesc}
                     rows={9}
                     className={styles.input__item}
                     placeholder="Введите краткое описание"
@@ -104,20 +75,24 @@ export default function AddPostPage() {
                 </div>
                 <textarea
                   name="description"
-                  onChange={changeHandler}
                   rows={15}
+                  onChange={changeHandler}
                   cols={40}
+                  value={editPost.description}
                   className={styles.desc}
                   placeholder="Введите полное описание"
                 />
               </div>
             </div>
             <div className={styles.form__bottom}>
-              <div>
-                <input name="file" onChange={fileChange} type="file" />
+              <div className={styles.image_container}>
+                <div className={styles.image_block}>
+                  <img className={styles.img} src={ SERVER_URL + editPost.cardImg?.formats?.large?.url} alt="" />
+                </div>
+                <input name="cardImg" type="file" onChange={fileChange} />
               </div>
               <div>
-                <button className={styles.form__btn}>Добавить новость</button>
+                <button className={styles.form__btn}>Сохранить изменения</button>
               </div>
             </div>
           </form>
@@ -125,4 +100,31 @@ export default function AddPostPage() {
       </div>
     </>
   );
+}
+
+export async function loadEditPost(id) {
+  const post = await axios.get(`/cards/${id}?populate=cardImg`);
+  const postData = post.data.data;
+
+  return postData;
+}
+export async function getStaticPaths() {
+  const posts = await axios.get(`/cards`);
+  const postsData = posts.data.data;
+
+  const paths = postsData.map((post) => {
+    return {
+      params: { id: post.id.toString() },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params: { id } }) {
+  const editpost = await loadEditPost(id);
+  return { props: { editpost } };
 }
