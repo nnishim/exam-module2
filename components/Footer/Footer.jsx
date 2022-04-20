@@ -65,7 +65,7 @@ function Footer() {
 								<h2 className='footer-contact__title'>Электронная почта:</h2>
 							</div>
 							<div>
-								<a href='#' className={styles.email__link}>news@news@gmail.com</a>
+								<a href='#' className={styles.email__link}>news@gmail.com</a>
 							</div>
 						</div>
 						<div className='footer-contact__item'>

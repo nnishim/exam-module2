@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { SERVER_URL } from "../../api/urls";
 import { BiCalendar } from "react-icons/bi";
 import Link from "next/link";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
+import cn from "classnames";
 
 function News({ news, page, pagination }) {
-  const removeItem = (id) => {
-    news.filter((news) => news.id !== id);
-    axios.delete(`/cards/${id}?populate=cardImg`);
+  const [pageNum, setPageNum] = useState(1);
+  const router = useRouter()
+  const paginationItems = [];
+
+  console.log(pagination);
+
+  let pages = pagination.pageCount;
+
+  const changePage = (index) => {
+    setPageNum(index);
+    Router.push(`/news?page=${index}`);
   };
-  for (let i = 0; i < pagination.length; i++) {
-    const buttons = <button>{i}</button>
+
+  for (let i = 0; i < pages; i++) {
+    paginationItems.push(
+      <button
+        key={i}
+        onClick={() => changePage(i + 1)}
+        className="pagination__btn"
+      >
+        {i + 1}
+      </button>
+    );
   }
-  
+
   return (
     <>
       <div className="news">
@@ -46,43 +64,17 @@ function News({ news, page, pagination }) {
             );
           })}
         </ul>
-        <div className="paginations">
-          <button
-            onClick={() => Router.push(`/news?page=${page - 1}`)}
-            disabled={page <= 1}
-            className="pagination__btn"
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => Router.push(`/news?page=${page + 1}`)}
-            className="pagination__btn"
-          >
-            Next
-          </button>
-        </div>
+        <div className="paginations">{paginationItems}</div>
       </div>
 
       <style jsx>
         {`
-          .paginations{
+          .paginations {
             display: flex;
             align-items: center;
             justify-content: center;
           }
-          .pagination__btn{
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            transition: .3s ease-in-out;
-            padding: 10px 15px;
-          }
-          .pagination__btn:hover{
-            background-color: #ddd;
-            color: #fff;
-          }
-          .news{
+          .news {
             margin-bottom: 80px;
           }
           .news-list {
@@ -143,11 +135,17 @@ function News({ news, page, pagination }) {
           }
           .card__image-item {
             max-width: 400px;
+            overflow: hidden;
           }
           .card_img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transform: scale(1);
+            transition: 0.3s ease-in-out;
+          }
+          .card_img:hover {
+            transform: scale(1.2);
           }
         `}
       </style>

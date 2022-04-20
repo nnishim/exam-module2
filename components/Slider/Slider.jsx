@@ -15,7 +15,7 @@ function Slider({ slides }) {
   return (
     <Swiper
       loop={true}
-      autoplay={{delay: 3000}}
+      autoplay={true}
       navigation={true}
       effect={"fade"}
       pagination={{clickable: true }}

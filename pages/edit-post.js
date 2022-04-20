@@ -4,7 +4,7 @@ import axios from "../api/axios-strapi";
 import Head from "next/head";
 import { SERVER_URL } from "../api/urls";
 
-export default function PostEditPage({ editpost }) {
+export default function PostEditPage({ editpost, id }) {
   const [editPost, setEditPost] = useState({
     title: editpost.title,
     shortDesc: editpost.shortDesc,
@@ -34,7 +34,7 @@ export default function PostEditPage({ editpost }) {
   };
   return (
     <>
-      <div className={styles.add_post}>
+      <div className={styles.add_post} key={id}>
         <Head>
           <title>Редактировать пост</title>
           <link rel="icon" href="/favicon.ico" />
@@ -89,7 +89,7 @@ export default function PostEditPage({ editpost }) {
                 <div className={styles.image_block}>
                   <img className={styles.img} src={ SERVER_URL + editPost.cardImg?.formats?.large?.url} alt="" />
                 </div>
-                <input name="cardImg" type="file" onChange={fileChange} />
+                <input name="cardImg" type="file" />
               </div>
               <div>
                 <button className={styles.form__btn}>Сохранить изменения</button>

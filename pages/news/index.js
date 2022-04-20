@@ -24,12 +24,10 @@ export default function NewsPage({ news, page, pagination }) {
   );
 }
 NewsPage.getInitialProps = async ({ query: { page = 1 } }) => {
-  
 	const res = await axios.get(
 		`/cards?pagination[pageSize]=3&pagination[page]=${page}&populate=cardImg`
 	);
 	const {data: news, meta: {pagination}} = res.data;
-  console.log(news);
 	return {
     news,
     pagination,

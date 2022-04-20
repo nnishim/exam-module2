@@ -1,0 +1,12 @@
+.login{
+	margin: 0 auto;
+	margin-top: 80px;
+	width: 400px;
+}
+.input_item{
+	padding: 10px;
+	width: 100%;
+}
+.input_block{
+	margin-bottom: 10px;
+}

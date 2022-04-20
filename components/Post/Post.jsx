@@ -1,13 +1,16 @@
 import React from "react";
 import styles from "../../styles/Contact.module.css";
 import { FiTwitter, FiFacebook, FiInstagram } from "react-icons/fi";
-import { FaUserCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { BiCalendar } from "react-icons/bi";
 import { SERVER_URL } from "../../api/urls";
 import Link from "next/link";
 
 function Post({ post, user }) {
-  console.log(user);
+  const removeItem = () => {
+    post.filter((post) => post.id !== id);
+    axios.delete(`/cards/${id}?populate=cardImg`);
+  };
   return (
     <>
       <div className="post-wrapper">
@@ -61,10 +64,10 @@ function Post({ post, user }) {
                   </div>
                 </div>
                 <div className="post__buttons">
-                  <Link  href={`/post_edit`}>
+                  <Link  href={`/edit-post/${post.id}`}>
                     <a className="edit-btn"><FaRegEdit/> Редактировать пост</a>
                   </Link>
-                  <button className="delete-btn"><FaRegTrashAlt/> Удалить пост</button>
+                  <button onClick={removeItem} className="delete-btn"><FaRegTrashAlt/> Удалить пост</button>
                 </div>
               </div>
             </div>

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { nav } from "../../data/nav";
 import cn from "classnames";
 import { FiLogIn } from "react-icons/fi";
+import { FaRegUserCircle } from "react-icons/fa";
 import styles from "./Layout.module.css";
 
 function Layout({ children }) {
   const router = useRouter({});
+  const [open, setOpen] = useState(false)
   return (
     <>
       <header className="header">
@@ -36,19 +38,56 @@ function Layout({ children }) {
               })}
             </nav>
             <div className="auth">
-              <Link href="#">
+              {/* <Link href="/login">
                 <a className="auth__btn">
                   <span>Войти</span>
                   <FiLogIn className={styles.auth_icon} />
                 </a>
-              </Link>
+              </Link> */}
+              <button className="user_btn" onClick={() => setOpen(!open)}>
+                <FaRegUserCircle style={{fontSize:'35px', fill:'#fff'}}/>
+                {open && 
+                  <div className="dropdown">
+                    <Link href='/profile'><a className="menu_item">Профиль</a></Link>
+                    <Link href='/add_post'><a className="menu_item">Добавить пост</a></Link>
+                    <Link href='#'><a className="menu_item">Выйти</a></Link>
+                  </div>
+                }
+              </button>
             </div>
           </div>
         </div>
       </header>
       <div className="wrapper">{children}</div>
       <style jsx>
-        {`
+        {` 
+          .dropdown{
+            background-color: #fff;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            right: 5px;
+            top: 40px;
+            width: 150px;
+            overflow: hidden;
+            border-radius: 7px 0 7px 7px;
+            border: 1px solid #444;
+          }
+          .menu_item{
+            width: 100%;
+            padding: 15px 0;
+            transition: .3s ease-in-out;
+          }
+          .menu_item:hover{
+            background-color: #ccc;
+          }
+          .user_btn{
+            background-color: transparent;
+            border: none;
+            position: relative;
+            cursor: pointer;
+          }
           .header {
             padding: 10px 0;
             background-color: #778ca3;
@@ -68,9 +107,6 @@ function Layout({ children }) {
             display: flex;
             align-items: center;
             justify-content: space-between;
-          }
-          .nav {
-            margin-right: -60px;
           }
           .nav__link {
             color: #d1d8e0;
